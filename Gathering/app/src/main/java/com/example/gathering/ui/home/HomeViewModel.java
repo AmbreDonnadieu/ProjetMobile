@@ -1,5 +1,7 @@
 package com.example.gathering.ui.home;
 
+import android.content.Intent;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -41,17 +43,6 @@ public class HomeViewModel extends ViewModel {
 
         //mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new ExampleAdapter(mexampleList);
-        mAdapter.setOnItemClickListener(new ExampleAdapter.OnItemClickListener() {
-            @Override
-            public void OnItemClick(int position) {
-                changeItem(position,"Clicked");
-            }
-
-            @Override
-            public void OnDeleteClick(int position) {
-                removeItem(position);
-            }
-        });
     }
 
     public void changeItem(int position, String text){

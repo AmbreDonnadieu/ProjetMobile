@@ -1,5 +1,6 @@
 package com.example.gathering.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gathering.CardActivity;
+import com.example.gathering.ExampleAdapter;
 import com.example.gathering.R;
 
 public class HomeFragment extends Fragment {
@@ -34,13 +37,26 @@ public class HomeFragment extends Fragment {
     }
 
     public void buildRecyclerView(View root){
-        final RecyclerView recyclerView = root.findViewById(R.id.recyclerview);
-        final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(homeViewModel.mAdapter);
+        homeViewModel.mRecyclerView = root.findViewById(R.id.recyclerview);
+        homeViewModel.mLayoutManager = new LinearLayoutManager(getActivity());
+        homeViewModel.mRecyclerView.setHasFixedSize(true);
+        homeViewModel.mRecyclerView.setLayoutManager(homeViewModel.mLayoutManager);
+        homeViewModel.mRecyclerView.setAdapter(homeViewModel.mAdapter);
 
 
+        homeViewModel.mAdapter.setOnItemClickListener(new ExampleAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(int position) {
+                //homeViewModel.changeItem(position,"Clicked");
+                Intent i = new Intent(getActivity(), CardActivity.class);
+                startActivity(i);
+            }
+
+            @Override
+            public void OnDeleteClick(int position) {
+                homeViewModel.removeItem(position);
+            }
+        });
 
     }
 }
