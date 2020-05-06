@@ -2,6 +2,7 @@ package com.example.gathering;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -73,12 +74,21 @@ public class MainActivity extends AppCompatActivity {
         userNameMenu = headerView.findViewById(R.id.user_name_view);
         userNameMenu.setText("salut");
         user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user !=null)
-            userNameMenu.setText(user.getDisplayName());
-        else
-            userNameMenu.setText("please connect urself");
+        updateUI();
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateUI();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateUI();
+}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -103,8 +113,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        updateUI();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    private void updateUI(){
+        if (user !=null) {
+            userNameMenu.setText(user.getDisplayName());
+        }
+        else
+            userNameMenu.setText("please connect urself");
     }
 }

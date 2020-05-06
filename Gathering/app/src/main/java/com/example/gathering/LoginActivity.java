@@ -198,7 +198,6 @@ public class LoginActivity extends AppCompatActivity {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         if (signInIntent!=null){
             startActivityForResult(signInIntent, RC_SIGN_IN);
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
         }
     }
 
@@ -268,6 +267,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d("google auth to fireb", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUiWithFireBaseUser(user);
+                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("google auth to fireb", "signInWithCredential:failure", task.getException());
@@ -314,6 +314,8 @@ public class LoginActivity extends AppCompatActivity {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 Log.d("google auth", "firebaseAuthWithGoogle:" + account.getId());
                 firebaseAuthWithGoogle(account.getIdToken());
+                if (mAuth.getCurrentUser()!=null)
+                    startActivity(new Intent(this,MainActivity.class));
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w("google auth", "Google sign in failed", e);
