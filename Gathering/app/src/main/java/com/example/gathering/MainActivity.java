@@ -26,7 +26,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
 
-/*Par Ambre Donnadieu et Simon Lauzeral*/
+/*Par Ambre Donnadieu et Simon Lauzeral
+* Repo du projet sur github : https://github.com/AmbreDonnadieu/ProjetMobile
+* */
+
 
 public class MainActivity extends AppCompatActivity {
 
