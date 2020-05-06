@@ -86,7 +86,7 @@ public class HomeFragment extends Fragment {
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user!=null)
         uid = user.getUid();
-        return root;
+        //return root;
     }
 
     @Override
