@@ -253,7 +253,6 @@ public class LoginActivity extends AppCompatActivity {
                             updateUiWithFireBaseUser(null);
                         }
 
-                        // ...
                     }
                 });
     }
@@ -290,7 +289,7 @@ public class LoginActivity extends AppCompatActivity {
         if (currentUser!=null) {
             updateUiWithFireBaseUser(currentUser);
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
-        }
+    }
         // Check for existing Google Sign In account, if the user is already signed in
     // the GoogleSignInAccount will be non-null.
        /* GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);

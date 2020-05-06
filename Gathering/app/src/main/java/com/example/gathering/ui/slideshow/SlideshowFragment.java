@@ -13,6 +13,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.gathering.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SlideshowFragment extends Fragment {
 
@@ -30,6 +32,7 @@ public class SlideshowFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
         return root;
     }
 }
