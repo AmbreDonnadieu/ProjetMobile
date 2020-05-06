@@ -2,7 +2,7 @@
 
 projet réalisé par Ambre Donnadieu et Simon Lauzeral.   
 
-Fonctionnalitées implémenté:
+Fonctionnalitées implémentées:
 
 authentification : 	- facebook
 					- google
@@ -13,7 +13,7 @@ authentification : 	- facebook
 			- suppression
 			
 
-Fonctionnalité manquante : 	- personnalisation du profil
+Fonctionnalitées manquantes : 	- personnalisation du profil
 							- trie des événements
 							- affichage de la carte avec l'avatar
 							- micropaiement 
