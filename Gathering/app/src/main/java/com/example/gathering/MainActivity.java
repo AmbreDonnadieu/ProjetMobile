@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateUI(){
         if (user !=null) {
-            userNameMenu.setText(user.getDisplayName());
+            userNameMenu.setText(user.getEmail());
         }
         else
             userNameMenu.setText("please connect urself");
