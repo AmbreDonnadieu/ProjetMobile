@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "661463191009",
+    "firebase_url": "https://gathering-c6d73.firebaseio.com",
+    "project_id": "gathering-c6d73",
+    "storage_bucket": "gathering-c6d73.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661463191009:android:bea22ad89754f873d256a0",
+        "android_client_info": {
+          "package_name": "com.example.gathering"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661463191009-g13lksditjs7k5c68fm799h1cc0c2ftf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDITltU99oyUlJTbmXhncycVbz5L_pBI98"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661463191009-g13lksditjs7k5c68fm799h1cc0c2ftf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
