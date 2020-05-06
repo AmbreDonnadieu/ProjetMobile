@@ -57,6 +57,19 @@ public class CardActivity extends AppCompatActivity {
             }
         });
 
+        mModify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i3 = new Intent(CardActivity.this, ModifCardContent.class);
+                i3.putExtra("titre", mTitre.getText());
+                i3.putExtra("date", mDate.getText());
+                i3.putExtra("heure", mHeure.getText());
+                i3.putExtra("lieu", mLieu.getText());
+                i3.putExtra("index", index);
+                startActivity(i3);
+            }
+        });
+
     }
 
     public void OnDeleteClick(){

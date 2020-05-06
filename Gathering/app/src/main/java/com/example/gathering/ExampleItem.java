@@ -26,10 +26,10 @@ public class ExampleItem {
     public ExampleItem(){
         mid=0;
         mImageResource=0;
-        mTitreEvent = "";
-        mDateEvent="";
-        mHeureEvent="";
-        mLieuEvent="";
+        mTitreEvent = "theTitle";
+        mDateEvent="01/01/0001";
+        mHeureEvent="00:00";
+        mLieuEvent="ThePlace";
     }
 
     public void changeEvent(String text){
