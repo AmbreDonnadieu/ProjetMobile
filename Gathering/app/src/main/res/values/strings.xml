@@ -37,4 +37,8 @@
     <string name="login_failed">"Login failed"</string>
     <string name="login_page">Please Login or register</string>
     <string name="action_sign_out">Sign out</string>
+
+    <string name="page_all_events">All Events</string>
+    <string name="page_your_events">Your Events</string>
+    <string name="page_profil">Profil</string>
 </resources>
