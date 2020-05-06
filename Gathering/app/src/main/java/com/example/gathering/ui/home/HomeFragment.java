@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,9 @@ import com.example.gathering.DatabaseHandler;
 import com.example.gathering.ExampleAdapter;
 import com.example.gathering.ExampleItem;
 import com.example.gathering.R;
+import com.example.gathering.LoginActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -28,6 +32,9 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private DatabaseHandler dbHandler;
+    private TextView text;
+    private FirebaseUser user;
+    private String uid;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -76,7 +83,15 @@ public class HomeFragment extends Fragment {
                 //homeViewModel.removeItem(position);
             }
         });
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user!=null)
+        uid = user.getUid();
+        return root;
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     public void fillInList(){
