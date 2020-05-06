@@ -28,18 +28,6 @@ public class HomeViewModel extends ViewModel {
         //mText = new MutableLiveData<>();
         //mText.setValue("This is home fragment");
         mexampleList = new ArrayList<>();
-        mexampleList.add(new ExampleItem(R.drawable.ic_android,"Event 1", "01/01/2020","01:00","Chicoutimi"));
-        mexampleList.add(new ExampleItem(R.drawable.ic_sun,"Event 2", "02/01/2020","02:00","Québec"));
-        mexampleList.add(new ExampleItem(R.drawable.ic_audio,"Event 3", "03/01/2020","03:00","Montreal"));
-        mexampleList.add(new ExampleItem(R.drawable.ic_android,"Event 4", "04/01/2020","04:00","Chicoutimi"));
-        mexampleList.add(new ExampleItem(R.drawable.ic_sun,"Event 5", "05/01/2020","05:00","Québec"));
-        mexampleList.add(new ExampleItem(R.drawable.ic_audio,"Event 6", "06/01/2020","06:00","Montreal"));
-        mexampleList.add(new ExampleItem(R.drawable.ic_android,"Event 7", "01/01/2020","07:00","Chicoutimi"));
-        mexampleList.add(new ExampleItem(R.drawable.ic_sun,"Event 8", "02/01/2020","08:00","Québec"));
-        mexampleList.add(new ExampleItem(R.drawable.ic_audio,"Event 9", "03/01/2020","09:00","Montreal"));
-        mexampleList.add(new ExampleItem(R.drawable.ic_android,"Event 10", "04/01/2020","10:00","Chicoutimi"));
-        mexampleList.add(new ExampleItem(R.drawable.ic_sun,"Event 11", "05/01/2020","11:00","Québec"));
-        mexampleList.add(new ExampleItem(R.drawable.ic_audio,"Event 12", "06/01/2020","12:00","Montreal"));
 
         //mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new ExampleAdapter(mexampleList);
@@ -57,5 +45,12 @@ public class HomeViewModel extends ViewModel {
 
     public ArrayList<ExampleItem> getExampleList(){
         return mexampleList;
+    }
+    public void setExampleList(ArrayList<ExampleItem> thelist){
+         mexampleList = thelist;
+    }
+
+    public ExampleItem getItem(int position){
+        return mexampleList.get(position);
     }
 }

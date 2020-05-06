@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewholder> {
 
-    private ArrayList<ExampleItem> mExampleList;
+    public ArrayList<ExampleItem> mExampleList;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener{

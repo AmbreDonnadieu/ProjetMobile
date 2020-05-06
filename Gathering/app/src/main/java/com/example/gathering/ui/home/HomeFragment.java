@@ -1,6 +1,7 @@
 package com.example.gathering.ui.home;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,13 +17,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gathering.CardActivity;
+import com.example.gathering.DatabaseHandler;
 import com.example.gathering.ExampleAdapter;
+import com.example.gathering.ExampleItem;
 import com.example.gathering.R;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-
+    private DatabaseHandler dbHandler;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -30,17 +35,22 @@ public class HomeFragment extends Fragment {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        dbHandler = new DatabaseHandler(getActivity());
+        if(dbHandler.getEventSize()==0){
+            fillInList();
+        }
+        homeViewModel.setExampleList(dbHandler.getEventList());
+        //ArrayList<ExampleItem> e = homeViewModel.getExampleList();
         buildRecyclerView(root);
-
-        homeViewModel.getExampleList();
         return root;
     }
 
-    public void buildRecyclerView(View root){
+    public void buildRecyclerView(final View root){
         homeViewModel.mRecyclerView = root.findViewById(R.id.recyclerview);
         homeViewModel.mLayoutManager = new LinearLayoutManager(getActivity());
-        homeViewModel.mRecyclerView.setHasFixedSize(true);
+        homeViewModel.mRecyclerView.setHasFixedSize(false);
         homeViewModel.mRecyclerView.setLayoutManager(homeViewModel.mLayoutManager);
+        homeViewModel.mAdapter.mExampleList = homeViewModel.getExampleList();
         homeViewModel.mRecyclerView.setAdapter(homeViewModel.mAdapter);
 
 
@@ -49,14 +59,45 @@ public class HomeFragment extends Fragment {
             public void OnItemClick(int position) {
                 //homeViewModel.changeItem(position,"Clicked");
                 Intent i = new Intent(getActivity(), CardActivity.class);
+                i.putExtra("Titre", homeViewModel.getItem(position).getTitre());
+                i.putExtra("Date", homeViewModel.getItem(position).getDateEvent());
+                i.putExtra("Heure", homeViewModel.getItem(position).getHeureEvent());
+                i.putExtra("Lieu", homeViewModel.getItem(position).getLieuEvent());
+                i.putExtra("index", homeViewModel.getItem(position).getId());
                 startActivity(i);
             }
 
             @Override
             public void OnDeleteClick(int position) {
-                homeViewModel.removeItem(position);
+                dbHandler.removeEvent(homeViewModel.getItem(position).getId());
+                homeViewModel.mRecyclerView.removeViewAt(position);
+                homeViewModel.mAdapter.notifyItemRemoved(position);
+                homeViewModel.setExampleList(dbHandler.getEventList());
+                //homeViewModel.removeItem(position);
             }
         });
 
+    }
+
+    public void fillInList(){
+        ArrayList<ExampleItem> mexampleList = new ArrayList<>();
+        mexampleList.add(new ExampleItem(R.drawable.ic_android,"Event 1", "01/01/2020","01:00","Chicoutimi"));
+        mexampleList.add(new ExampleItem(R.drawable.ic_sun,"Event 2", "02/01/2020","02:00","Québec"));
+        mexampleList.add(new ExampleItem(R.drawable.ic_audio,"Event 3", "03/01/2020","03:00","Montreal"));
+        mexampleList.add(new ExampleItem(R.drawable.ic_android,"Event 4", "04/01/2020","04:00","Chicoutimi"));
+        mexampleList.add(new ExampleItem(R.drawable.ic_sun,"Event 5", "05/01/2020","05:00","Québec"));
+        mexampleList.add(new ExampleItem(R.drawable.ic_audio,"Event 6", "06/01/2020","06:00","Montreal"));
+        mexampleList.add(new ExampleItem(R.drawable.ic_android,"Event 7", "01/01/2020","07:00","Chicoutimi"));
+        mexampleList.add(new ExampleItem(R.drawable.ic_sun,"Event 8", "02/01/2020","08:00","Québec"));
+        mexampleList.add(new ExampleItem(R.drawable.ic_audio,"Event 9", "03/01/2020","09:00","Montreal"));
+        mexampleList.add(new ExampleItem(R.drawable.ic_android,"Event 10", "04/01/2020","10:00","Chicoutimi"));
+        mexampleList.add(new ExampleItem(R.drawable.ic_sun,"Event 11", "05/01/2020","11:00","Québec"));
+        mexampleList.add(new ExampleItem(R.drawable.ic_audio,"Event 12", "06/01/2020","12:00","Montreal"));
+
+        //homeViewModel.setExampleList(mexampleList);
+
+        for(int i=0; i<mexampleList.size();i++){
+            dbHandler.addEvent(mexampleList.get(i));
+        }
     }
 }
